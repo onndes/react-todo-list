@@ -1,0 +1,30 @@
+.form {
+  margin: 30px 0px;
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  width: 100%;
+  display: flex;
+  border-radius: 10px;
+  position: relative;
+  z-index: 2;
+}
+.input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+.button {
+  position: relative;
+  z-index: 1;
+  border-start-end-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: rgba(128, 128, 128, 0.8);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.button:hover {
+  background-color: rgba(128, 128, 128, 0.15);
+}
