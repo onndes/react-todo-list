@@ -4,7 +4,21 @@ import { Field, reduxForm } from "redux-form";
 const FromAddNewItem = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={s.form}>
-            <Field className={s.input} name='bodyNewTask' component='input' type='text' />
+            <Field
+                className={s.inputTitle}
+                name='bodyTitleNewTask'
+                placeholder='Enter the title'
+                component='input'
+                type='text'
+            />
+
+            <Field
+                className={s.inputText}
+                name='bodyNewTask'
+                placeholder='Enter the task'
+                component='input'
+                type='text'
+            />
             <button className={s.button}>ADD</button>
         </form>
     );
