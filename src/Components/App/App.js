@@ -1,18 +1,15 @@
 import "../../Common/Sanitize.css";
 import "./App.css";
-import ToDoList from "../ToDoList/ToDoList";
-import FromAddNewItem from "./../FromAddNewItem/FromAddNewItem";
+
+import Header from "../Header/Header";
+import Body from "../Body/Body";
 
 const App = () => {
-    const addTask = (data) => {
-        console.log(data);
-    };
-
     return (
         <div className='AppWrapper'>
             <div className='AppWrapperContent'>
-                <FromAddNewItem handleSubmit={addTask} />
-                <ToDoList />
+                <Header />
+                <Body />
             </div>
         </div>
     );

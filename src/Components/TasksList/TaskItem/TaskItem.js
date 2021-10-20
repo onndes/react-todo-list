@@ -1,6 +1,6 @@
-import s from "./ToDoItem.module.css";
+import s from "./TaskItem.module.css";
 
-const ToDoItem = () => {
+const TaskItem = () => {
     return (
         <div className={s.wrapper}>
             <ul className={s.list}>
@@ -13,4 +13,4 @@ const ToDoItem = () => {
     );
 };
 
-export default ToDoItem;
+export default TaskItem;

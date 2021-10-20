@@ -15,7 +15,7 @@ const FromAddNewItem = (props) => {
             <Field
                 className={s.inputText}
                 name='bodyNewTask'
-                placeholder='Enter the task'
+                placeholder='Task...'
                 component='input'
                 type='text'
             />
