@@ -1,19 +1,24 @@
+import React from "react";
 import s from "./FormToDoList.module.css";
-import { Field, reduxForm } from "redux-form";
+import { Field, Form } from "react-final-form";
 
 const FormToDoList = (props) => {
     return (
-        <form onSubmit={props.handleSubmit} className={s.form}>
-            <Field
-                className={s.inputText}
-                name='bodyNewTask'
-                placeholder='Name new to-do list...'
-                component='input'
-                type='text'
-            />
-            <button className={s.button}>ADD</button>
-        </form>
+        <Form
+            onSubmit={props.handleSubmit}
+            render={({handleSubmit}) => (
+                <form onSubmit={handleSubmit} className={s.form}>
+                    <Field
+                        className={s.inputText}
+                        name='bodyNewTask'
+                        placeholder='Enter name new to-do list...'
+                        component="input"
+                    />
+                    <button type='submit' className={s.button}>ADD</button>
+                </form>
+            )}
+        />
     );
 };
 
-export default reduxForm({ form: "todo" })(FormToDoList);
+export default FormToDoList;
