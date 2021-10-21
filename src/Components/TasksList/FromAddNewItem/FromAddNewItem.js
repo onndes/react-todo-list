@@ -1,5 +1,6 @@
+import React from "react";
 import s from "./FromAddNewItem.module.css";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm } from "react-final-form";
 
 const FromAddNewItem = (props) => {
     return (
@@ -14,7 +15,7 @@ const FromAddNewItem = (props) => {
 
             <Field
                 className={s.inputText}
-                name='bodyNewTask'
+                name={"bodyNewTask"}
                 placeholder='Task...'
                 component='input'
                 type='text'

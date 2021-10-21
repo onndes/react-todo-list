@@ -1,13 +1,21 @@
+import React from "react";
 import s from "./ToDoItem.module.css";
 
-const ToDoItem = () => {
+const ToDoItem = (props) => {
+    if (!props.todoLists) {
+        return <p>No todo</p>;
+    }
+
     return (
         <div className={s.wrapper}>
             <ul className={s.list}>
-                <li className={s.item}>Test1</li>
-                <li className={s.item}>Test1</li>
-                <li className={s.item}>Test1</li>
-                <li className={s.item}>Test1</li>
+                {props.todoLists.map((todoItem) => {
+                    return (
+                        <li key={todoItem.id} className={s.item}>
+                            {todoItem.title}
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );

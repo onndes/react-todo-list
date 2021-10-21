@@ -38,8 +38,6 @@ export const getTodoLists = () => async (dispatch) => {
 
 export const createTodoList = (title) => async (dispatch) => {
     const resault = await todoAPI.createTotoList(title);
-    debugger;
-    console.log(resault);
     if (resault.data === 0) {
         dispatch(addToDoList(title));
     }
