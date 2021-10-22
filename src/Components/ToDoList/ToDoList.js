@@ -15,6 +15,7 @@ const TasksList = (props) => {
                 todoLists={props.todoLists}
                 deleteTodoList={props.deleteTodoList}
                 renameTodoList={props.renameTodoList}
+                setIdSelectedTodoList={props.setIdSelectedTodoList}
             />
         </div>
     );

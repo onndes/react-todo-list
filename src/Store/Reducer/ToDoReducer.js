@@ -4,9 +4,11 @@ const SET_TODO_LISTS = "ToDoReducer/SET_DOTO_LISTS";
 const ADD_TODO_LIST = "ToDoReducer/ADD_TODO_LIST";
 const DELETE_TODO_LIST = "ToDoReducer/DELETE_TODO_LIST";
 const RENAME_TODO_LIST = "ToDoReducer/RENAME_TODO_LIST";
+const SET_ID_SELECTED_TODO = "ToDoReducer/SET_ID_SELECTED_TODO";
 
 const initialState = {
     todoLists: null,
+    idSelectedTodoList: null,
 };
 
 const ToDoReducer = (state = initialState, action) => {
@@ -39,6 +41,11 @@ const ToDoReducer = (state = initialState, action) => {
                     return item;
                 }),
             };
+        case SET_ID_SELECTED_TODO:
+            return {
+                ...state,
+                idSelectedTodoList: action.todoId,
+            };
         default:
             return state;
     }
@@ -55,6 +62,9 @@ const deleteToDoList = (todoId) => {
 };
 const renameToDoList = (todoId) => {
     return { type: RENAME_TODO_LIST, todoId };
+};
+export const setIdSelectedTodoList = (todoId) => {
+    return { type: SET_ID_SELECTED_TODO, todoId };
 };
 
 export const getTodoLists = () => async (dispatch) => {

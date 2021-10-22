@@ -1,16 +1,18 @@
 import React from "react";
-// import FromAddNewItem from "./FromAddNewItem/FromAddNewItem";
+import FromAddNewItem from "./FromAddNewItem/FromAddNewItem";
 import TaskItem from "./TaskItem/TaskItem";
 import s from "./TasksList.module.css";
 
-const TasksList = () => {
-
+const TasksList = (props) => {
+    const addTask = (data) => {
+        props.addTask(data.bodyNewTask);
+    };
 
     return (
         <div className={s.wrapper}>
-            {/* <FromAddNewItem handleSubmit={addTask} /> */}
+            <FromAddNewItem handleSubmit={addTask} />
             <h1 className={s.title}>TASKS</h1>
-            <TaskItem />
+            <TaskItem tasksList={props.tasksList}/>
         </div>
     );
 };

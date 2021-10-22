@@ -7,6 +7,7 @@ import {
     getTodoLists,
     deleteTodoList,
     renameTodoList,
+    setIdSelectedTodoList,
 } from "../../Store/Reducer/ToDoReducer";
 class ToDoListContainer extends React.Component {
     componentDidMount() {
@@ -30,5 +31,11 @@ const mapStateToProps = (state) => {
 };
 
 export default compose(
-    connect(mapStateToProps, { createTodoList, getTodoLists, deleteTodoList, renameTodoList }),
+    connect(mapStateToProps, {
+        createTodoList,
+        getTodoLists,
+        deleteTodoList,
+        renameTodoList,
+        setIdSelectedTodoList,
+    }),
 )(ToDoListContainer);

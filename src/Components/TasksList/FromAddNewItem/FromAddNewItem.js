@@ -1,28 +1,26 @@
 import React from "react";
 import s from "./FromAddNewItem.module.css";
-import { Field, reduxForm } from "react-final-form";
+import { Field, Form } from "react-final-form";
 
 const FromAddNewItem = (props) => {
     return (
-        <form onSubmit={props.handleSubmit} className={s.form}>
-            <Field
-                className={s.inputTitle}
-                name='bodyTitleNewTask'
-                placeholder='Enter the title'
-                component='input'
-                type='text'
-            />
-
-            <Field
-                className={s.inputText}
-                name={"bodyNewTask"}
-                placeholder='Task...'
-                component='input'
-                type='text'
-            />
-            <button className={s.button}>ADD</button>
-        </form>
+        <Form
+            onSubmit={props.handleSubmit}
+            render={({ handleSubmit }) => (
+                <form onSubmit={handleSubmit} className={s.form}>
+                    <Field
+                        className={s.inputText}
+                        name='bodyNewTask'
+                        placeholder='Enter new tasks...'
+                        component='input'
+                    />
+                    <button type='submit' className={s.button}>
+                        ADD
+                    </button>
+                </form>
+            )}
+        />
     );
 };
 
-export default reduxForm({ form: "task" })(FromAddNewItem);
+export default FromAddNewItem;

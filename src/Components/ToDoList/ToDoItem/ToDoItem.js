@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import s from "./ToDoItem.module.css";
 import { Form, Field } from "react-final-form";
+import { NavLink } from "react-router-dom";
 
 const ToDoItem = (props) => {
     const [renameItem, setRenameItem] = useState(null);
@@ -15,11 +16,16 @@ const ToDoItem = (props) => {
     };
     const handleSubmitRename = (data) => {
         props.renameTodoList(renameItem, data.bodyRenameTodo);
-        setRenameItem(null)
+        setRenameItem(null);
     };
     const handleNotSubmitRename = () => {
         setRenameItem(null);
     };
+
+    const handleClickToDo = (id) => {
+        props.setIdSelectedTodoList(id);
+    };
+
     return (
         <div className={s.wrapper}>
             <ul className={s.list}>
@@ -36,7 +42,12 @@ const ToDoItem = (props) => {
                     }
                     return (
                         <li key={todoItem.id} className={s.item}>
-                            <p className={s.text}>{todoItem.title}</p>
+                            <NavLink
+                                to={`/todo-list/${Math.abs(todoItem.order) + 1}`}
+                                onClick={() => handleClickToDo(todoItem.id, todoItem.title)}
+                                className={s.text}>
+                                {todoItem.title}
+                            </NavLink>
                             <div
                                 onClick={() => handleRenameItem(todoItem.id)}
                                 className={s.wrapperBtnRename + " " + s.wrapperBtn}></div>
