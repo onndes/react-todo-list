@@ -11,7 +11,11 @@ const TasksList = (props) => {
         <div className={s.wrapper}>
             <FormToDoList handleSubmit={addTask} />
             <h1 className={s.title}>TO-DO LISTS</h1>
-            <ToDoItem todoLists={props.todoLists} />
+            <ToDoItem
+                todoLists={props.todoLists}
+                deleteTodoList={props.deleteTodoList}
+                renameTodoList={props.renameTodoList}
+            />
         </div>
     );
 };

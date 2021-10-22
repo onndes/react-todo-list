@@ -2,7 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import ToDoList from "./ToDoList";
-import { createTodoList, getTodoLists } from "../../Store/Reducer/ToDoReducer";
+import {
+    createTodoList,
+    getTodoLists,
+    deleteTodoList,
+    renameTodoList,
+} from "../../Store/Reducer/ToDoReducer";
 class ToDoListContainer extends React.Component {
     componentDidMount() {
         this.props.getTodoLists();
@@ -24,6 +29,6 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default compose(connect(mapStateToProps, { createTodoList, getTodoLists }))(
-    ToDoListContainer,
-);
+export default compose(
+    connect(mapStateToProps, { createTodoList, getTodoLists, deleteTodoList, renameTodoList }),
+)(ToDoListContainer);
