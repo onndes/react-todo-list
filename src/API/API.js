@@ -22,3 +22,16 @@ export const todoAPI = {
         return instance.put(`todo-lists/${todoID}`, { title });
     },
 };
+
+export const taksksAPI = {
+    getTasks(todoId, count = 100, page = 1) {
+        return instance
+            .get(`todo-lists/${todoId}/tasks?count=${count}&page=${page}`)
+            .then((response) => response.data);
+    },
+    createTask(todoId, taskText) {
+        return instance
+            .post(`todo-lists/${todoId}/tasks`, { title: taskText })
+            .then((response) => response.data);
+    },
+};
