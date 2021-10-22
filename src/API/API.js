@@ -12,8 +12,13 @@ export const todoAPI = {
     getTodoLists() {
         return instance.get("todo-lists").then((response) => response.data);
     },
-
     createTotoList(title) {
         return instance.post("todo-lists", { title });
+    },
+    deleteTotoList(todoID) {
+        return instance.delete(`todo-lists/${todoID}`);
+    },
+    renameTotoList(todoID, title) {
+        return instance.put(`todo-lists/${todoID}`, { title });
     },
 };
