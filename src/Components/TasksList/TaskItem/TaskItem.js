@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import s from "./TaskItem.module.css";
 import { Form, Field } from "react-final-form";
-import { NavLink } from "react-router-dom";
+import LoaderLine from "./../../../Common/LoaderLine/LoaderLine";
 
 const ToDoItem = (props) => {
     const [renameItem, setRenameItem] = useState(null);
+
     if (!props.tasksList) {
-        return <p>No todo</p>;
+        return <LoaderLine color='rgba(128, 128, 128, 0.8)' />;
+    }
+    if (props.tasksList.length === 0) {
+        return <p className={s.noTasks}>No tasks</p>;
     }
     const handleDeleteItem = (id) => {
         if (window.confirm("Delete?")) props.deleteTask(id);
@@ -20,9 +24,6 @@ const ToDoItem = (props) => {
     };
     const handleNotSubmitRename = () => {
         setRenameItem(null);
-    };
-    const handleClickToDo = (id) => {
-        props.setIdSelectedTodoList(id);
     };
 
     return (
@@ -41,12 +42,7 @@ const ToDoItem = (props) => {
                     }
                     return (
                         <li key={todoItem.id} className={s.item}>
-                            <NavLink
-                                to={`/todo-list/${Math.abs(todoItem.order) + 1}`}
-                                onClick={() => handleClickToDo(todoItem.id, todoItem.title)}
-                                className={s.text}>
-                                {todoItem.title}
-                            </NavLink>
+                            <p className={s.text}>{todoItem.title}</p>
                             <div
                                 onClick={() => handleRenameItem(todoItem.id)}
                                 className={s.wrapperBtnRename + " " + s.wrapperBtn}></div>

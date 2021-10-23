@@ -1,3 +1,12 @@
+.noTasks {
+  grid-area: titleTwo;
+  color: rgba(128, 128, 128, 0.8);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 1px;
+  margin: 15px 0px 15px 15px;
+}
+
 .item {
   border: 1px solid rgba(128, 128, 128, 0.4);
   display: grid;
