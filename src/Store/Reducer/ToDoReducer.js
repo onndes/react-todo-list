@@ -21,7 +21,7 @@ const ToDoReducer = (state = initialState, action) => {
         case ADD_TODO_LIST:
             return {
                 ...state,
-                todoLists: [...state.todoLists, action.titleNewTodoList],
+                todoLists: [action.titleNewTodoList, ...state.todoLists],
             };
         case DELETE_TODO_LIST:
             return {
@@ -29,13 +29,14 @@ const ToDoReducer = (state = initialState, action) => {
                 todoLists: state.todoLists.filter((item) => item.id !== action.todoId),
             };
         case RENAME_TODO_LIST:
+            console.log(state.todoLists);
             return {
                 ...state,
                 todoLists: state.todoLists.map((item) => {
-                    if (item.id === action.todoID) {
+                    if (item.id === action.todoId) {
                         return {
                             ...item,
-                            title: action.title,
+                            title: action.newTitle,
                         };
                     }
                     return item;
@@ -60,8 +61,8 @@ const addToDoList = (titleNewTodoList) => {
 const deleteToDoList = (todoId) => {
     return { type: DELETE_TODO_LIST, todoId };
 };
-const renameToDoList = (todoId) => {
-    return { type: RENAME_TODO_LIST, todoId };
+const renameToDoList = (todoId, newTitle) => {
+    return { type: RENAME_TODO_LIST, todoId, newTitle };
 };
 export const setIdSelectedTodoList = (todoId) => {
     return { type: SET_ID_SELECTED_TODO, todoId };
@@ -74,20 +75,20 @@ export const getTodoLists = () => async (dispatch) => {
 
 export const createTodoList = (title) => async (dispatch) => {
     const resault = await todoAPI.createTotoList(title);
-    if (resault.data === 0) {
-        dispatch(addToDoList(title));
+    if (resault.data.resultCode === 0) {
+        dispatch(addToDoList(resault.data.data.item));
     }
 };
 
 export const deleteTodoList = (todoId) => async (dispatch) => {
     const resault = await todoAPI.deleteTotoList(todoId);
-    if (resault.resultCode === 0) {
+    if (resault.data.resultCode === 0) {
         dispatch(deleteToDoList(todoId));
     }
 };
 export const renameTodoList = (todoId, title) => async (dispatch) => {
     const resault = await todoAPI.renameTotoList(todoId, title);
-    if (resault.resultCode === 0) {
+    if (resault.data.resultCode === 0) {
         dispatch(renameToDoList(todoId, title));
     }
 };
