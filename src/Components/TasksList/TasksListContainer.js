@@ -3,7 +3,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import TasksList from "./TasksList";
-import { getTasks, addTask } from "../../Store/Reducer/TasksReducer";
+import { getTasks, addTask, renameTask, deleteTask } from "../../Store/Reducer/TasksReducer";
 
 class TasksListContainer extends React.Component {
     componentDidMount() {
@@ -20,6 +20,6 @@ const mapDispatchToProps = (state) => {
     };
 };
 export default compose(
-    connect(mapDispatchToProps, { getTasks, addTask }),
+    connect(mapDispatchToProps, { getTasks, addTask, deleteTask, renameTask }),
     withRouter,
 )(TasksListContainer);

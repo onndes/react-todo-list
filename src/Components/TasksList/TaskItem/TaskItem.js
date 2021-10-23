@@ -9,13 +9,21 @@ const ToDoItem = (props) => {
         return <p>No todo</p>;
     }
     const handleDeleteItem = (id) => {
-      setRenameItem('s')
+        if (window.confirm("Delete?")) props.deleteTask(id);
     };
-    const handleRenameItem = (id) => {};
-    const handleSubmitRename = (data) => {};
-    const handleNotSubmitRename = () => {};
-
-    const handleClickToDo = (id) => {};
+    const handleRenameItem = (id) => {
+        setRenameItem(id);
+    };
+    const handleSubmitRename = (data) => {
+        props.renameTask(renameItem, data.bodyRenameTask);
+        setRenameItem(null);
+    };
+    const handleNotSubmitRename = () => {
+        setRenameItem(null);
+    };
+    const handleClickToDo = (id) => {
+        props.setIdSelectedTodoList(id);
+    };
 
     return (
         <div className={s.wrapper}>
@@ -57,12 +65,12 @@ const FormRenameItem = (props) => {
     return (
         <Form
             onSubmit={props.handleSubmit}
-            initialValues={{ bodyRenameTodo: props.initialValues }}
+            initialValues={{ bodyRenameTask: props.initialValues }}
             render={({ handleSubmit, key }) => (
                 <form key={key} onSubmit={handleSubmit} className={s.item + " " + s.itemForm}>
                     <Field
                         className={s.text + " " + s.textForm}
-                        name='bodyRenameTodo'
+                        name='bodyRenameTask'
                         component='input'
                     />
 

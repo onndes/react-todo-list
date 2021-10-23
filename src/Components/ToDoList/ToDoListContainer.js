@@ -13,11 +13,6 @@ class ToDoListContainer extends React.Component {
     componentDidMount() {
         this.props.getTodoLists();
     }
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps !== this.props) {
-            this.props.getTodoLists();
-        }
-    }
 
     render() {
         return <ToDoList {...this.props} />;

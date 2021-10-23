@@ -12,7 +12,11 @@ const TasksList = (props) => {
         <div className={s.wrapper}>
             <FromAddNewItem handleSubmit={addTask} />
             <h1 className={s.title}>TASKS</h1>
-            <TaskItem tasksList={props.tasksList}/>
+            <TaskItem
+                tasksList={props.tasksList}
+                deleteTask={props.deleteTask}
+                renameTask={props.renameTask}
+            />
         </div>
     );
 };

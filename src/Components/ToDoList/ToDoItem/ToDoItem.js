@@ -30,6 +30,7 @@ const ToDoItem = (props) => {
         <div className={s.wrapper}>
             <ul className={s.list}>
                 {props.todoLists.map((todoItem) => {
+
                     if (renameItem === todoItem.id) {
                         return (
                             <FormRenameItem
