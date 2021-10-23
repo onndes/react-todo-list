@@ -1,7 +1,11 @@
 .AppWrapper {
-
+    height: 100vh;
 }
 .AppWrapperContent {
-  max-width: 600px;
-  margin: auto;
+    max-width: 620px;
+    padding: 0 10px;
+    height: 100%;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 0px white;
 }
