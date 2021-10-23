@@ -1,0 +1,19 @@
+.wrapper {
+    width: 100%;
+}
+
+.line {
+    width: 0%;
+    animation-name: line;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes line {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
