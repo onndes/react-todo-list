@@ -34,4 +34,10 @@ export const taksksAPI = {
             .post(`todo-lists/${todoId}/tasks`, { title: taskText })
             .then((response) => response.data);
     },
+    deleteTaskList(todoId, taskId) {
+        return instance.delete(`todo-lists/${todoId}/tasks/${taskId}`);
+    },
+    renameTaskList(todoId, taskId, title) {
+        return instance.put(`todo-lists/${todoId}/tasks/${taskId}`, { title });
+    },
 };
