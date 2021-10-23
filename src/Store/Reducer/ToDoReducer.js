@@ -5,6 +5,7 @@ const ADD_TODO_LIST = "ToDoReducer/ADD_TODO_LIST";
 const DELETE_TODO_LIST = "ToDoReducer/DELETE_TODO_LIST";
 const RENAME_TODO_LIST = "ToDoReducer/RENAME_TODO_LIST";
 const SET_ID_SELECTED_TODO = "ToDoReducer/SET_ID_SELECTED_TODO";
+const SET_LOADING = "TasksReducer/SET_LOADING";
 
 const initialState = {
     todoLists: null,
@@ -29,7 +30,6 @@ const ToDoReducer = (state = initialState, action) => {
                 todoLists: state.todoLists.filter((item) => item.id !== action.todoId),
             };
         case RENAME_TODO_LIST:
-            console.log(state.todoLists);
             return {
                 ...state,
                 todoLists: state.todoLists.map((item) => {
@@ -46,6 +46,11 @@ const ToDoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 idSelectedTodoList: action.todoId,
+            };
+        case SET_LOADING:
+            return {
+                ...state,
+                isLoading: action.isLoading,
             };
         default:
             return state;
@@ -64,13 +69,20 @@ const deleteToDoList = (todoId) => {
 const renameToDoList = (todoId, newTitle) => {
     return { type: RENAME_TODO_LIST, todoId, newTitle };
 };
+
+const setLoading = (isLoading) => {
+    return { type: SET_LOADING, isLoading };
+};
+
 export const setIdSelectedTodoList = (todoId) => {
     return { type: SET_ID_SELECTED_TODO, todoId };
 };
 
 export const getTodoLists = () => async (dispatch) => {
+    dispatch(setLoading(true));
     const resault = await todoAPI.getTodoLists();
     dispatch(setToDoLists(resault));
+    dispatch(setLoading(false));
 };
 
 export const createTodoList = (title) => async (dispatch) => {
