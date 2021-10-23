@@ -17,6 +17,8 @@ class TasksListContainer extends React.Component {
 const mapDispatchToProps = (state) => {
     return {
         tasksList: state.tasks.tasksList,
+        selectedTodoTitle: state.tasks.selectedTodoTitle,
+        isLoading: state.tasks.isLoading,
     };
 };
 export default compose(
