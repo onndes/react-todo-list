@@ -1,5 +1,13 @@
-.form {
+.wrapper {
   margin: 0px 0px 30px 0px;
+}
+.pError {
+  margin: 5px;
+  color: red;
+  display: flex;
+  justify-content: flex-end;
+}
+.form {
   border: 1px solid rgba(128, 128, 128, 0.4);
   width: 100%;
   grid-template-columns: 1fr 80px;
@@ -8,6 +16,9 @@
   z-index: 2;
   display: grid;
   grid-template-areas: "title button" "text button";
+}
+.form.error {
+  border: 1px solid red;
 }
 .form input {
   color: black;

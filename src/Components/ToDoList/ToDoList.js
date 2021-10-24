@@ -8,9 +8,11 @@ const TasksList = (props) => {
     const addTask = (data) => {
         props.createTodoList(data.bodyNewTask);
     };
+    
+
     return (
         <div className={s.wrapper}>
-            <FormToDoList handleSubmit={addTask} />
+            <FormToDoList handleSubmit={addTask}/>
             <h1 className={s.title}>TO-DO LISTS</h1>
             {props.isLoading ? (
                 <LoaderLine color='rgba(128, 128, 128, 0.8)' />

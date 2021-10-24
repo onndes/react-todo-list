@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const ToDoItem = (props) => {
     const [renameItem, setRenameItem] = useState(null);
     if (!props.todoLists) {
-        return <p>No todo</p>;
+        return <p>null</p>;
     }
     const handleDeleteItem = (id) => {
         if (window.confirm("Delete?")) props.deleteTodoList(id);
@@ -74,7 +74,6 @@ const FormRenameItem = (props) => {
                         name='bodyRenameTodo'
                         component='input'
                     />
-
                     <button
                         type='submit'
                         className={s.wrapperBtnSubmitRename + " " + s.wrapperBtn}></button>

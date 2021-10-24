@@ -15,6 +15,7 @@
     font-size: 16px;
     padding: 10px;
     color: black;
+    overflow: hidden;
 }
 
 .text:hover {
