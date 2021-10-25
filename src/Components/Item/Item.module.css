@@ -1,3 +1,12 @@
+.noTasks {
+  grid-area: titleTwo;
+  color: rgba(128, 128, 128, 0.8);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 1px;
+  margin: 15px 0px 15px 15px;
+}
+
 .item {
     border: 1px solid rgba(128, 128, 128, 0.4);
     display: grid;
@@ -50,16 +59,16 @@
     background-color: transparent;
 }
 .wrapperBtnDelete::before {
-    background: url(../../../img/trash.svg) center center / 60% auto no-repeat;
+    background: url(../../img/trash.svg) center center / 60% auto no-repeat;
 }
 .wrapperBtnRename::before {
-    background: url(../../../img/pencil.svg) center center / 60% auto no-repeat;
+    background: url(../../img/pencil.svg) center center / 60% auto no-repeat;
 }
 .wrapperBtnSubmitRename::before {
-    background: url(../../../img/check.svg) center center / 60% auto no-repeat;
+    background: url(../../img/check.svg) center center / 60% auto no-repeat;
 }
 .wrapperBtnNotSubmitRename::before {
-    background: url(../../../img/cross.svg) center center / 60% auto no-repeat;
+    background: url(../../img/cross.svg) center center / 60% auto no-repeat;
 }
 .button {
     position: relative;

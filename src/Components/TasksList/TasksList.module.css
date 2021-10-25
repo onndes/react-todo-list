@@ -25,9 +25,7 @@
   letter-spacing: 1px;
   margin: 0px 0px 15px 15px;
 }
-.titleTwo span {
-  text-decoration: underline;
-}
+
 .btnBack {
   grid-area: btn;
   color: rgba(128, 128, 128, 0.8);

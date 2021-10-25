@@ -1,12 +1,36 @@
-import React from "react";
-import ToDoItem from "./ToDoItem/ToDoItem";
+import React, { useState } from "react";
 import s from "./ToDoList.module.css";
 import LoaderLine from "./../../Common/LoaderLine/LoaderLine";
 import FormAddItem from "./../FormAddItem/FormAddItem";
+import Item from "../Item/Item";
 
 const TasksList = (props) => {
     const addTask = (data) => {
         props.createTodoList(data.bodyInput);
+    };
+
+    const [renameItem, setRenameItem] = useState(null);
+
+    if (!props.todoLists) {
+        return <LoaderLine height='4px' />;
+    }
+    const handleDeleteItem = (id) => {
+        if (window.confirm("Delete?")) props.deleteTodoList(id);
+    };
+    const handleRenameItem = (id) => {
+        setRenameItem(id);
+    };
+    const handleSubmitRename = (data) => {
+        props.renameTodoList(renameItem, data.bodyRenameTodo);
+        setRenameItem(null);
+    };
+    const handleNotSubmitRename = () => {
+        setRenameItem(null);
+    };
+
+    const handleClickToDo = (id, title) => {
+        props.setIdSelectedTodoList(id, title);
+        props.setSelectedToDoTitle(title);
     };
 
     return (
@@ -18,14 +42,16 @@ const TasksList = (props) => {
             />
             <h1 className={s.title}>TASK LIST - CATEGORIES</h1>
             {props.isLoading ? (
-                <LoaderLine color='rgba(128, 128, 128, 0.8)' />
+                <LoaderLine />
             ) : (
-                <ToDoItem
-                    todoLists={props.todoLists}
-                    deleteTodoList={props.deleteTodoList}
-                    renameTodoList={props.renameTodoList}
-                    setIdSelectedTodoList={props.setIdSelectedTodoList}
-                    setSelectedToDoTitle={props.setSelectedToDoTitle}
+                <Item
+                    itemLists={props.todoLists}
+                    handleDeleteItem={handleDeleteItem}
+                    handleRenameItem={handleRenameItem}
+                    handleSubmitRename={handleSubmitRename}
+                    handleNotSubmitRename={handleNotSubmitRename}
+                    handleClickToDo={handleClickToDo}
+                    renameItem={renameItem}
                 />
             )}
         </div>
