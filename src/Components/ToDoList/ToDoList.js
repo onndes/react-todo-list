@@ -1,19 +1,22 @@
 import React from "react";
-import FormToDoList from "./FormToDoList/FormToDoList";
 import ToDoItem from "./ToDoItem/ToDoItem";
 import s from "./ToDoList.module.css";
 import LoaderLine from "./../../Common/LoaderLine/LoaderLine";
+import FormAddItem from "./../FormAddItem/FormAddItem";
 
 const TasksList = (props) => {
     const addTask = (data) => {
-        props.createTodoList(data.bodyNewTask);
+        props.createTodoList(data.bodyInput);
     };
-    
 
     return (
         <div className={s.wrapper}>
-            <FormToDoList handleSubmit={addTask}/>
-            <h1 className={s.title}>TO-DO LISTS</h1>
+            <FormAddItem
+                handleSubmit={addTask}
+                maxLength='30'
+                placeholder='Enter name new task list...'
+            />
+            <h1 className={s.title}>TASK LIST - CATEGORIES</h1>
             {props.isLoading ? (
                 <LoaderLine color='rgba(128, 128, 128, 0.8)' />
             ) : (

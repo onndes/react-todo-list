@@ -1,18 +1,18 @@
 import React from "react";
-import FromAddNewItem from "./FromAddNewItem/FromAddNewItem";
 import TaskItem from "./TaskItem/TaskItem";
 import s from "./TasksList.module.css";
 import { NavLink } from "react-router-dom";
 import LoaderLine from "../../Common/LoaderLine/LoaderLine";
+import FormAddItem from "./../FormAddItem/FormAddItem";
 
 const TasksList = (props) => {
     const addTask = (data) => {
-        props.addTask(data.bodyNewTask);
+        props.addTask(data.bodyInput);
     };
 
     return (
         <div className={s.wrapper}>
-            <FromAddNewItem handleSubmit={addTask} />
+            <FormAddItem handleSubmit={addTask} maxLength='3' placeholder='Enter name new task...' />
             <div className={s.wrapperTitleBtn}>
                 <NavLink to='/todo-list' className={s.btnBack}></NavLink>
                 <h2 className={s.titleTwo}>
