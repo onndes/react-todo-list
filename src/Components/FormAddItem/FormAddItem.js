@@ -6,8 +6,11 @@ import cn from "classnames";
 const FormAddItem = (props) => {
     const validatorMaxLength = (data) => {
         const errors = {};
-        if (data.bodyNewTask && data.bodyNewTask.length > props.maxLength) {
-            errors.bodyNewTask = `Max length ${props.maxLength}`;
+        if (data.bodyInput && data.bodyInput.length > props.maxLength) {
+            errors.bodyInput = `Max length name ${props.maxLength}`;
+        }
+        if (props.lenghItems >= props.maxCountLength) {
+            errors.maxCountTask = `Max count task ${props.maxCountLength}`;
         }
         return errors;
     };
@@ -18,11 +21,16 @@ const FormAddItem = (props) => {
             validate={validatorMaxLength}
             placeholder={props.placeholder}
             render={(props) => {
+
                 return (
                     <div className={s.wrapper}>
                         <form
                             onSubmit={props.handleSubmit}
-                            className={cn(s.form, { [s.error]: props.errors.bodyNewTask })}>
+                            className={cn(s.form, {
+                                [s.error]:
+                                    props.errors.bodyInput ||
+                                    (props.errors.maxCountTask && props.touched.bodyInput),
+                            })}>
                             <Field
                                 name='bodyInput'
                                 render={({ input, meta }) => {
@@ -41,12 +49,19 @@ const FormAddItem = (props) => {
                                 }}
                             />
 
-                            <button type='submit' className={s.button}>
+                            <button type='submit' className={cn(s.button, {
+                                [s.error]:
+                                    props.errors.bodyInput ||
+                                    (props.errors.maxCountTask && props.touched.bodyInput),
+                            })}>
                                 ADD
                             </button>
                         </form>
-                        {props.errors.bodyNewTask && (
-                            <p className={s.pError}>{props.errors.bodyNewTask}</p>
+                        {props.errors.bodyInput && (
+                            <p className={s.pError}>{props.errors.bodyInput}</p>
+                        )}
+                        {props.errors.maxCountTask && props.touched.bodyInput && (
+                            <p className={s.pError}>{props.errors.maxCountTask}</p>
                         )}
                     </div>
                 );

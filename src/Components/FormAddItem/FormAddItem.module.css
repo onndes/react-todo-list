@@ -55,6 +55,10 @@
     letter-spacing: 1px;
     border-left: 1px solid rgba(128, 128, 128, 0.4);
 }
+.button.error {
+   
+    border-left: 1px solid red;
+}
 
 .button:hover {
     background-color: rgba(128, 128, 128, 0.15);

@@ -35,6 +35,8 @@ const TasksList = (props) => {
                 handleSubmit={addTask}
                 maxLength='3'
                 placeholder='Enter name new task...'
+                lenghItems={props.tasksList.length}
+                maxCountLength='10'
             />
             <div className={s.wrapperTitleBtn}>
                 <NavLink to='/todo-list' className={s.btnBack}></NavLink>

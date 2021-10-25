@@ -39,6 +39,8 @@ const TasksList = (props) => {
                 handleSubmit={addTask}
                 maxLength='30'
                 placeholder='Enter name new task list...'
+                lenghItems={props.todoLists.length}
+                maxCountLength='10'
             />
             <h1 className={s.title}>TASK LIST - CATEGORIES</h1>
             {props.isLoading ? (
