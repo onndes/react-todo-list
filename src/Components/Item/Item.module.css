@@ -1,10 +1,17 @@
+.errors {
+    margin: 5px;
+    color: red;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .noTasks {
-  grid-area: titleTwo;
-  color: rgba(128, 128, 128, 0.8);
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: 1px;
-  margin: 15px 0px 15px 15px;
+    grid-area: titleTwo;
+    color: rgba(128, 128, 128, 0.8);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin: 15px 0px 15px 15px;
 }
 
 .item {
@@ -15,12 +22,13 @@
     margin: 0px 0px 20px 0px;
     overflow: hidden;
 }
+
 .itemForm {
     border: 1px solid rgba(255, 166, 0, 0.8);
     box-shadow: 0px 0px 5px rgba(255, 166, 0, 0.8);
 }
 
-.text{
+.text {
     font-size: 16px;
     padding: 10px;
     color: black;
@@ -31,7 +39,7 @@
     background-color: rgba(128, 128, 128, 0.15);
 }
 .text.textForm:hover {
-  background-color: white;
+    background-color: white;
 }
 .textForm {
     padding: 10px;

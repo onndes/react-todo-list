@@ -7,13 +7,11 @@ import Item from "./../Item/Item";
 
 const TasksList = (props) => {
     const addTask = (data) => {
-        props.addTask(data.bodyInput);
+        if (props.tasksList && props.tasksList.length <= 100) {
+            props.addTask(data.bodyInput);
+        }
     };
     const [renameItem, setRenameItem] = useState(null);
-
-    if (!props.tasksList) {
-        return <LoaderLine />;
-    }
 
     const handleDeleteItem = (id) => {
         if (window.confirm("Delete?")) props.deleteTask(id);
@@ -22,7 +20,7 @@ const TasksList = (props) => {
         setRenameItem(id);
     };
     const handleSubmitRename = (data) => {
-        props.renameTask(renameItem, data.bodyRenameTask);
+        props.renameTask(renameItem, data.bodyRename);
         setRenameItem(null);
     };
     const handleNotSubmitRename = () => {
@@ -33,9 +31,9 @@ const TasksList = (props) => {
         <div className={s.wrapper}>
             <FormAddItem
                 handleSubmit={addTask}
-                maxLength='3'
+                maxLength='100'
                 placeholder='Enter name new task...'
-                lenghItems={props.tasksList.length}
+                lenghItems={props.tasksList && props.tasksList.length}
                 maxCountLength='10'
             />
             <div className={s.wrapperTitleBtn}>
@@ -45,8 +43,8 @@ const TasksList = (props) => {
                 </h2>
                 <h1 className={s.title}>TASKS</h1>
             </div>
-            {props.isLoading ? (
-                <LoaderLine color='rgba(128, 128, 128, 0.8)' />
+            {props.isLoading || !props.tasksList ? (
+                <LoaderLine />
             ) : (
                 <Item
                     itemLists={props.tasksList}
@@ -54,8 +52,10 @@ const TasksList = (props) => {
                     handleSubmitRename={handleSubmitRename}
                     handleRenameItem={handleRenameItem}
                     handleNotSubmitRename={handleNotSubmitRename}
+                    renameItem={renameItem}
                 />
             )}
+            {/* <p>Et nulla minim cupidatat consequat. Nisi excepteur cupidatat excepteur ut et excepteur est occaecat. Dolor laborum laborum veniam incididunt laborum laboris id nisi sunt pariatur anim. Qui magna mollit et ex ullamco et amet nulla pariatur ullamco. Aliqua labore consequat id deserunt nisi eiusmod cillum Lorem tempor ipsum velit ut. Magna sunt nostrud culpa officia veniam do reprehenderit laboris excepteur labore. Ut enim occaecat adipisicing eiusmod adipisicing consectetur consequat magna do sint elit do et.</p> */}
         </div>
     );
 };

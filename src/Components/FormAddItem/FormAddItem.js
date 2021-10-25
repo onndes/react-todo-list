@@ -4,11 +4,14 @@ import { Field, Form } from "react-final-form";
 import cn from "classnames";
 
 const FormAddItem = (props) => {
-    const validatorMaxLength = (data) => {
-        const errors = {};
-        if (data.bodyInput && data.bodyInput.length > props.maxLength) {
+    const validateMaxLength = (values, errors) => {
+        if (values.bodyInput && values.bodyInput.length > props.maxLength) {
             errors.bodyInput = `Max length name ${props.maxLength}`;
         }
+
+        return errors;
+    };
+    const validateMaxCounItems = (values, errors) => {
         if (props.lenghItems >= props.maxCountLength) {
             errors.maxCountTask = `Max count task ${props.maxCountLength}`;
         }
@@ -18,10 +21,14 @@ const FormAddItem = (props) => {
     return (
         <Form
             onSubmit={props.handleSubmit}
-            validate={validatorMaxLength}
+            validate={(values) => {
+                const errors = {};
+                validateMaxLength(values, errors);
+                validateMaxCounItems(values, errors);
+                return errors;
+            }}
             placeholder={props.placeholder}
             render={(props) => {
-
                 return (
                     <div className={s.wrapper}>
                         <form
@@ -49,11 +56,13 @@ const FormAddItem = (props) => {
                                 }}
                             />
 
-                            <button type='submit' className={cn(s.button, {
-                                [s.error]:
-                                    props.errors.bodyInput ||
-                                    (props.errors.maxCountTask && props.touched.bodyInput),
-                            })}>
+                            <button
+                                type='submit'
+                                className={cn(s.button, {
+                                    [s.error]:
+                                        props.errors.bodyInput ||
+                                        (props.errors.maxCountTask && props.touched.bodyInput),
+                                })}>
                                 ADD
                             </button>
                         </form>

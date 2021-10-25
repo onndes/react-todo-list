@@ -21,7 +21,7 @@ const TasksList = (props) => {
         setRenameItem(id);
     };
     const handleSubmitRename = (data) => {
-        props.renameTodoList(renameItem, data.bodyRenameTodo);
+        props.renameTodoList(renameItem, data.bodyRename);
         setRenameItem(null);
     };
     const handleNotSubmitRename = () => {

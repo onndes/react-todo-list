@@ -19,6 +19,7 @@ const Item = (props) => {
                                 key={i.id}
                                 handleSubmit={props.handleSubmitRename}
                                 handleNotSubmitRename={props.handleNotSubmitRename}
+                                maxLength={!i.todoListId ? "30" : "100"}
                             />
                         );
                     }
