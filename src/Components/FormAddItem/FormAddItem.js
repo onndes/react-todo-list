@@ -17,10 +17,14 @@ const FormAddItem = (props) => {
         }
         return errors;
     };
+    const iv = props.initialValues ? "" : null;
 
     return (
         <Form
             onSubmit={props.handleSubmit}
+            initialValues={{
+                bodyInput: iv,
+            }}
             validate={(values) => {
                 const errors = {};
                 validateMaxLength(values, errors);
@@ -29,14 +33,18 @@ const FormAddItem = (props) => {
             }}
             placeholder={props.placeholder}
             render={(props) => {
+                const isUsebodyInput =
+                    props.errors.maxCountTask &&
+                    props.modified.bodyInput &&
+                    props.values.bodyInput &&
+                    props.values.bodyInput.length >= 1;
+
                 return (
                     <div className={s.wrapper}>
                         <form
                             onSubmit={props.handleSubmit}
                             className={cn(s.form, {
-                                [s.error]:
-                                    props.errors.bodyInput ||
-                                    (props.errors.maxCountTask && props.touched.bodyInput),
+                                [s.error]: props.errors.bodyInput || isUsebodyInput,
                             })}>
                             <Field
                                 name='bodyInput'
@@ -59,9 +67,7 @@ const FormAddItem = (props) => {
                             <button
                                 type='submit'
                                 className={cn(s.button, {
-                                    [s.error]:
-                                        props.errors.bodyInput ||
-                                        (props.errors.maxCountTask && props.touched.bodyInput),
+                                    [s.error]: props.errors.bodyInput || isUsebodyInput,
                                 })}>
                                 ADD
                             </button>
@@ -69,9 +75,7 @@ const FormAddItem = (props) => {
                         {props.errors.bodyInput && (
                             <p className={s.pError}>{props.errors.bodyInput}</p>
                         )}
-                        {props.errors.maxCountTask && props.touched.bodyInput && (
-                            <p className={s.pError}>{props.errors.maxCountTask}</p>
-                        )}
+                        {isUsebodyInput && <p className={s.pError}>{props.errors.maxCountTask}</p>}
                     </div>
                 );
             }}

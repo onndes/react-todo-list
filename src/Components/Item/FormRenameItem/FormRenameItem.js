@@ -5,7 +5,7 @@ const FormRenameItem = (props) => {
     return (
         <Form
             onSubmit={props.handleSubmit}
-            initialValues={{ bodyRenameTodo: props.initialValues }}
+            initialValues={{ bodyRename: props.initialValues }}
             validate={(values) => {
                 const errors = {};
                 if (values.bodyRename && values.bodyRename.length > props.maxLength) {

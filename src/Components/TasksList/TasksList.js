@@ -6,9 +6,13 @@ import FormAddItem from "./../FormAddItem/FormAddItem";
 import Item from "./../Item/Item";
 
 const TasksList = (props) => {
+    
+    const maxLength = 100;
+    const maxCountLength = 100;
     const addTask = (data) => {
-        if (props.tasksList && props.tasksList.length <= 100) {
+        if (data.bodyInput.length > 0 && data.bodyInput.length <= maxLength) {
             props.addTask(data.bodyInput);
+            
         }
     };
     const [renameItem, setRenameItem] = useState(null);
@@ -31,10 +35,11 @@ const TasksList = (props) => {
         <div className={s.wrapper}>
             <FormAddItem
                 handleSubmit={addTask}
-                maxLength='100'
+                maxLength={maxLength}
                 placeholder='Enter name new task...'
                 lenghItems={props.tasksList && props.tasksList.length}
-                maxCountLength='10'
+                maxCountLength={maxCountLength}
+                
             />
             <div className={s.wrapperTitleBtn}>
                 <NavLink to='/todo-list' className={s.btnBack}></NavLink>

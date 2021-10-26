@@ -5,8 +5,15 @@ import FormAddItem from "./../FormAddItem/FormAddItem";
 import Item from "../Item/Item";
 
 const TasksList = (props) => {
+    const maxLength = 30;
+    const maxCountLength = 10;
+    const [isAddTask, setIsAddTask] = useState(false);
     const addTask = (data) => {
-        props.createTodoList(data.bodyInput);
+        if (data.bodyInput.length > 0 && data.bodyInput.length <= maxLength) {
+            props.createTodoList(data.bodyInput);
+            setIsAddTask(true);
+        }
+        
     };
 
     const [renameItem, setRenameItem] = useState(null);
@@ -37,10 +44,11 @@ const TasksList = (props) => {
         <div className={s.wrapper}>
             <FormAddItem
                 handleSubmit={addTask}
-                maxLength='30'
+                maxLength={maxLength}
                 placeholder='Enter name new task list...'
                 lenghItems={props.todoLists.length}
-                maxCountLength='10'
+                maxCountLength={maxCountLength}
+                initialValues={isAddTask}
             />
             <h1 className={s.title}>TASK LIST - CATEGORIES</h1>
             {props.isLoading ? (
