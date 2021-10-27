@@ -17,14 +17,11 @@ const FormAddItem = (props) => {
         }
         return errors;
     };
-    const iv = props.initialValues ? "" : null;
 
+    const lenghCountItems = props.lenghItems;
     return (
         <Form
             onSubmit={props.handleSubmit}
-            initialValues={{
-                bodyInput: iv,
-            }}
             validate={(values) => {
                 const errors = {};
                 validateMaxLength(values, errors);
@@ -42,7 +39,10 @@ const FormAddItem = (props) => {
                 return (
                     <div className={s.wrapper}>
                         <form
-                            onSubmit={props.handleSubmit}
+                            onSubmit={(e) => {
+                                props.handleSubmit(e);
+                                if (lenghCountItems < 10) props.form.reset();
+                            }}
                             className={cn(s.form, {
                                 [s.error]: props.errors.bodyInput || isUsebodyInput,
                             })}>
@@ -72,6 +72,7 @@ const FormAddItem = (props) => {
                                 ADD
                             </button>
                         </form>
+
                         {props.errors.bodyInput && (
                             <p className={s.pError}>{props.errors.bodyInput}</p>
                         )}

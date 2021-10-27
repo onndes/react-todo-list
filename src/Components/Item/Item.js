@@ -28,6 +28,7 @@ const Item = (props) => {
                         return (
                             <FormDeleteItem
                                 id={i.id}
+                                key={i.id}
                                 setDeleteItem={props.setDeleteItem}
                                 deleteSubmitItem={props.deleteSubmitItem}
                             />

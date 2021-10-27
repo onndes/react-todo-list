@@ -8,16 +8,13 @@ const TasksList = (props) => {
     const maxLength = 30;
     const maxCountLength = 10;
 
-    const [isAddTask, setIsAddTask] = useState(false);
     const [renameItem, setRenameItem] = useState(null);
     const [deleteItem, setDeleteItem] = useState(false);
 
     const addTask = (data) => {
-        if (data.bodyInput.length > 0 && data.bodyInput.length <= maxLength) {
-            props.createTodoList(data.bodyInput);
-            setIsAddTask(true);
-        }
+        props.createTodoList(data.bodyInput);
     };
+
 
     if (!props.todoLists) {
         return <LoaderLine height='4px' />;
@@ -32,7 +29,7 @@ const TasksList = (props) => {
         props.setIdSelectedTodoList(id, title);
         props.setSelectedToDoTitle(title);
     };
-
+    
     return (
         <div className={s.wrapper}>
             <FormAddItem
@@ -41,7 +38,8 @@ const TasksList = (props) => {
                 placeholder='Enter name new task list...'
                 lenghItems={props.todoLists.length}
                 maxCountLength={maxCountLength}
-                initialValues={isAddTask}
+                updateInitialValues={props.updateInitialValues}
+                setUdateInitialValues={props.setUdateInitialValues}
             />
             <h1 className={s.title}>TASK LIST - CATEGORIES</h1>
             {props.isLoading ? (

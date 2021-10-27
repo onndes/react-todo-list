@@ -85,11 +85,13 @@ export const getTodoLists = () => async (dispatch) => {
     dispatch(setLoading(false));
 };
 
-export const createTodoList = (title) => async (dispatch) => {
-    const resault = await todoAPI.createTotoList(title);
-    if (resault.data.resultCode === 0) {
-        dispatch(addToDoList(resault.data.data.item));
-    }
+export const createTodoList = (title) => {
+    return async (dispatch) => {
+        const resault = await todoAPI.createTotoList(title);
+        if (resault.data.resultCode === 0) {
+            dispatch(addToDoList(resault.data.data.item));
+        }
+    };
 };
 
 export const deleteTodoList = (todoId) => async (dispatch) => {
