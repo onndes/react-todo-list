@@ -26,7 +26,7 @@ const FormRenameItem = (props) => {
                             type='submit'
                             className={s.wrapperBtnSubmitRename + " " + s.wrapperBtn}></button>
                         <div
-                            onClick={props.handleNotSubmitRename}
+                            onClick={() => props.setRenameItem(null)}
                             className={s.wrapperBtnNotSubmitRename + " " + s.wrapperBtn}></div>
                     </form>
                 </div>

@@ -7,31 +7,24 @@ import Item from "../Item/Item";
 const TasksList = (props) => {
     const maxLength = 30;
     const maxCountLength = 10;
+
     const [isAddTask, setIsAddTask] = useState(false);
+    const [renameItem, setRenameItem] = useState(null);
+    const [deleteItem, setDeleteItem] = useState(false);
+
     const addTask = (data) => {
         if (data.bodyInput.length > 0 && data.bodyInput.length <= maxLength) {
             props.createTodoList(data.bodyInput);
             setIsAddTask(true);
         }
-        
     };
-
-    const [renameItem, setRenameItem] = useState(null);
 
     if (!props.todoLists) {
         return <LoaderLine height='4px' />;
     }
-    const handleDeleteItem = (id) => {
-        if (window.confirm("Delete?")) props.deleteTodoList(id);
-    };
-    const handleRenameItem = (id) => {
-        setRenameItem(id);
-    };
+
     const handleSubmitRename = (data) => {
         props.renameTodoList(renameItem, data.bodyRename);
-        setRenameItem(null);
-    };
-    const handleNotSubmitRename = () => {
         setRenameItem(null);
     };
 
@@ -56,12 +49,13 @@ const TasksList = (props) => {
             ) : (
                 <Item
                     itemLists={props.todoLists}
-                    handleDeleteItem={handleDeleteItem}
-                    handleRenameItem={handleRenameItem}
+                    deleteSubmitItem={props.deleteTodoList}
                     handleSubmitRename={handleSubmitRename}
-                    handleNotSubmitRename={handleNotSubmitRename}
                     handleClickToDo={handleClickToDo}
+                    setRenameItem={setRenameItem}
                     renameItem={renameItem}
+                    setDeleteItem={setDeleteItem}
+                    deleteItem={deleteItem}
                 />
             )}
         </div>

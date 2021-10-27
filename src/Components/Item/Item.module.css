@@ -27,12 +27,19 @@
     border: 1px solid rgba(255, 166, 0, 0.8);
     box-shadow: 0px 0px 5px rgba(255, 166, 0, 0.8);
 }
+.itemDeleteForm {
+    border: 1px solid rgba(255, 38, 0, 0.8);
+    box-shadow: 0px 0px 5px rgba(255, 38, 0, 0.8);
+}
 
 .text {
     font-size: 16px;
     padding: 10px;
     color: black;
     overflow: hidden;
+}
+.text.textDeleteForm {
+    color: rgba(255, 38, 0, 0.8);
 }
 
 .text:hover {
@@ -76,6 +83,12 @@
     background: url(../../img/check.svg) center center / 60% auto no-repeat;
 }
 .wrapperBtnNotSubmitRename::before {
+    background: url(../../img/cross.svg) center center / 60% auto no-repeat;
+}
+.wrapperFormBtnDelete::before {
+    background: url(../../img/check.svg) center center / 60% auto no-repeat;
+}
+.wrapperFormBtnNotDelete::before {
     background: url(../../img/cross.svg) center center / 60% auto no-repeat;
 }
 .button {

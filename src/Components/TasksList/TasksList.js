@@ -6,31 +6,24 @@ import FormAddItem from "./../FormAddItem/FormAddItem";
 import Item from "./../Item/Item";
 
 const TasksList = (props) => {
-    
     const maxLength = 100;
     const maxCountLength = 100;
+
     const addTask = (data) => {
         if (data.bodyInput.length > 0 && data.bodyInput.length <= maxLength) {
             props.addTask(data.bodyInput);
-            
         }
     };
     const [renameItem, setRenameItem] = useState(null);
+    const [deleteItem, setDeleteItem] = useState(null);
 
-    const handleDeleteItem = (id) => {
-        if (window.confirm("Delete?")) props.deleteTask(id);
-    };
-    const handleRenameItem = (id) => {
-        setRenameItem(id);
-    };
     const handleSubmitRename = (data) => {
         props.renameTask(renameItem, data.bodyRename);
         setRenameItem(null);
     };
-    const handleNotSubmitRename = () => {
-        setRenameItem(null);
-    };
-
+    if (!props.tasksList) {
+        return <LoaderLine height='4px' />;
+    }
     return (
         <div className={s.wrapper}>
             <FormAddItem
@@ -39,7 +32,6 @@ const TasksList = (props) => {
                 placeholder='Enter name new task...'
                 lenghItems={props.tasksList && props.tasksList.length}
                 maxCountLength={maxCountLength}
-                
             />
             <div className={s.wrapperTitleBtn}>
                 <NavLink to='/todo-list' className={s.btnBack}></NavLink>
@@ -53,14 +45,15 @@ const TasksList = (props) => {
             ) : (
                 <Item
                     itemLists={props.tasksList}
-                    handleDeleteItem={handleDeleteItem}
+                    deleteSubmitItem={props.deleteTask}
                     handleSubmitRename={handleSubmitRename}
-                    handleRenameItem={handleRenameItem}
-                    handleNotSubmitRename={handleNotSubmitRename}
+
+                    setRenameItem={setRenameItem}
                     renameItem={renameItem}
+                    setDeleteItem={setDeleteItem}
+                    deleteItem={deleteItem}
                 />
             )}
-            {/* <p>Et nulla minim cupidatat consequat. Nisi excepteur cupidatat excepteur ut et excepteur est occaecat. Dolor laborum laborum veniam incididunt laborum laboris id nisi sunt pariatur anim. Qui magna mollit et ex ullamco et amet nulla pariatur ullamco. Aliqua labore consequat id deserunt nisi eiusmod cillum Lorem tempor ipsum velit ut. Magna sunt nostrud culpa officia veniam do reprehenderit laboris excepteur labore. Ut enim occaecat adipisicing eiusmod adipisicing consectetur consequat magna do sint elit do et.</p> */}
         </div>
     );
 };

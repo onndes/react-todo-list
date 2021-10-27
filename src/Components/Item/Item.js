@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Item.module.css";
 import { NavLink } from "react-router-dom";
 import FormRenameItem from "./FormRenameItem/FormRenameItem";
+import FormDeleteItem from "./FormDeleteItem/FormDeleteItem";
 
 const Item = (props) => {
     if (props.itemLists.length === 0) {
@@ -18,8 +19,17 @@ const Item = (props) => {
                                 initialValues={i.title}
                                 key={i.id}
                                 handleSubmit={props.handleSubmitRename}
-                                handleNotSubmitRename={props.handleNotSubmitRename}
+                                setRenameItem={props.setRenameItem}
                                 maxLength={!i.todoListId ? "30" : "100"}
+                            />
+                        );
+                    }
+                    if (props.deleteItem === i.id) {
+                        return (
+                            <FormDeleteItem
+                                id={i.id}
+                                setDeleteItem={props.setDeleteItem}
+                                deleteSubmitItem={props.deleteSubmitItem}
                             />
                         );
                     }
@@ -36,10 +46,16 @@ const Item = (props) => {
                                 <p className={s.text}>{i.title}</p>
                             )}
                             <div
-                                onClick={() => props.handleRenameItem(i.id)}
+                                onClick={() => {
+                                    props.setDeleteItem(null);
+                                    props.setRenameItem(i.id);
+                                }}
                                 className={s.wrapperBtnRename + " " + s.wrapperBtn}></div>
                             <div
-                                onClick={() => props.handleDeleteItem(i.id)}
+                                onClick={() => {
+                                    props.setDeleteItem(i.id);
+                                    props.setRenameItem(null);
+                                }}
                                 className={s.wrapperBtnDelete + " " + s.wrapperBtn}></div>
                         </li>
                     );

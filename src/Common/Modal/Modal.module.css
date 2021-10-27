@@ -1,0 +1,29 @@
+.wrapper {
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  background-color: rgb(46, 46, 46);
+  color: white;
+  display: flex;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.text {
+  margin: 0px 40px 0px 0px;
+  padding: 10px;
+}
+.btn {
+  padding: 10px;
+}
+.btn:hover {
+  background-color: rgb(31, 31, 31);
+  border-radius: 10px;
+}
+
+.btnYes {
+  color: green;
+}
+.btnNo {
+  color: red;
+}
