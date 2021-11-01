@@ -10,6 +10,7 @@ const SET_LOADING = "TasksReducer/SET_LOADING";
 const initialState = {
     todoLists: null,
     idSelectedTodoList: null,
+    maxTodo: 10,
 };
 
 const ToDoReducer = (state = initialState, action) => {

@@ -2,10 +2,22 @@
   padding: 30px 0;
 }
 
-.title {
+.wrapperTitle {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 15px 15px 15px;
+
   color: rgba(128, 128, 128, 0.8);
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 1px;
-  margin: 0px 0px 15px 15px;
+}
+
+.title {
+  
+  margin: 0px 15px 0px 0px;
+}
+
+.countItem {
+
 }

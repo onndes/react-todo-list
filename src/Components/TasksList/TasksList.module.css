@@ -8,13 +8,17 @@
   grid-template-areas: 'btn titleTwo' 'btn title';
   margin: 0px 0px 15px 0px;
 }
-
-.title {
+.wrapperTitle {
   grid-area: title;
+  display: flex;
+  justify-content: space-between;
   color: rgba(128, 128, 128, 0.8);
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 1px;
+}
+.title {
+  
   margin: 0px 0px 0px 15px;
 }
 .titleTwo {

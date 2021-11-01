@@ -14,6 +14,7 @@ const initialState = {
     selectedTodoID: null,
     selectedTodoTitle: null,
     isLoading: false,
+    maxTasks: 100,
 };
 
 const TasksReducer = (state = initialState, action) => {

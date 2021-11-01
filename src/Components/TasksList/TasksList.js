@@ -24,6 +24,16 @@ const TasksList = (props) => {
     if (!props.tasksList) {
         return <LoaderLine height='4px' />;
     }
+    const addZiro = (num) => {
+        let res = num;
+        if (res < 100) {
+            res = `0${res}`;
+            if (res < 10) {
+                res = `0${res}`;
+            }
+        }
+        return res;
+    };
     return (
         <div className={s.wrapper}>
             <FormAddItem
@@ -38,7 +48,12 @@ const TasksList = (props) => {
                 <h2 className={s.titleTwo}>
                     TASK LIST: <span>{props.selectedTodoTitle}</span>
                 </h2>
-                <h1 className={s.title}>TASKS</h1>
+                <div className={s.wrapperTitle}>
+                    <h1 className={s.title}>TASKS</h1>
+                    <p className={s.countItem}>
+                        {props.tasksList ? addZiro(props.tasksList.length) : " "} / {props.maxTasks}
+                    </p>
+                </div>
             </div>
             {props.isLoading || !props.tasksList ? (
                 <LoaderLine />
@@ -47,7 +62,6 @@ const TasksList = (props) => {
                     itemLists={props.tasksList}
                     deleteSubmitItem={props.deleteTask}
                     handleSubmitRename={handleSubmitRename}
-
                     setRenameItem={setRenameItem}
                     renameItem={renameItem}
                     setDeleteItem={setDeleteItem}
