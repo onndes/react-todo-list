@@ -5,7 +5,8 @@ const ADD_TODO_LIST = "ToDoReducer/ADD_TODO_LIST";
 const DELETE_TODO_LIST = "ToDoReducer/DELETE_TODO_LIST";
 const RENAME_TODO_LIST = "ToDoReducer/RENAME_TODO_LIST";
 const SET_ID_SELECTED_TODO = "ToDoReducer/SET_ID_SELECTED_TODO";
-const SET_LOADING = "TasksReducer/SET_LOADING";
+const SET_LOADING = "ToDoReducer/SET_LOADING";
+const REORDER_TODO = "ToDoReducer/REORDER_TODO";
 
 const initialState = {
     todoLists: null,
@@ -53,6 +54,10 @@ const ToDoReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: action.isLoading,
             };
+        case REORDER_TODO:
+            return {
+                ...state,
+            };
         default:
             return state;
     }
@@ -77,6 +82,9 @@ const setLoading = (isLoading) => {
 
 export const setIdSelectedTodoList = (todoId) => {
     return { type: SET_ID_SELECTED_TODO, todoId };
+};
+const reorderTodoListAC = (todoId, afterTodo) => {
+    return { type: REORDER_TODO, todoId, afterTodo };
 };
 
 export const getTodoLists = () => async (dispatch) => {
@@ -105,6 +113,12 @@ export const renameTodoList = (todoId, title) => async (dispatch) => {
     const resault = await todoAPI.renameTotoList(todoId, title);
     if (resault.data.resultCode === 0) {
         dispatch(renameToDoList(todoId, title));
+    }
+};
+export const reorderTodoList = (todoId, afterTodo) => async (dispatch) => {
+    const resault = await todoAPI.reorderTodoList(todoId, afterTodo);
+    if (resault.data.resultCode === 0) {
+        dispatch(reorderTodoListAC(todoId, afterTodo));
     }
 };
 

@@ -15,11 +15,14 @@ export const todoAPI = {
     createTotoList(title) {
         return instance.post("todo-lists", { title });
     },
-    deleteTotoList(todoID) {
-        return instance.delete(`todo-lists/${todoID}`);
+    deleteTotoList(todoId) {
+        return instance.delete(`todo-lists/${todoId}`);
     },
-    renameTotoList(todoID, title) {
-        return instance.put(`todo-lists/${todoID}`, { title });
+    renameTotoList(todoId, title) {
+        return instance.put(`todo-lists/${todoId}`, { title });
+    },
+    reorderTodoList(todoId, afterTodo) {
+        return instance.put(`todo-lists/${todoId}/reorder`, { putAfterItemId: afterTodo });
     },
 };
 
