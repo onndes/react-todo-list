@@ -1,0 +1,20 @@
+.form {
+  max-width: 270px;
+  margin: 0 auto;
+}
+.wrapperBlock {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 5px;
+  margin: 0px 0px 10px 0px;
+}
+.input {
+  border: 1px solid rgba(128, 128, 128, 0.4)
+}
+.wrapperBlockCheckBox {
+  flex-direction: row;
+  align-items: center;
+}
+.btn {
+  width: 100%;
+}
