@@ -44,3 +44,9 @@ export const taksksAPI = {
         return instance.put(`todo-lists/${todoId}/tasks/${taskId}`, { title });
     },
 };
+
+export const authAPI = {
+    getAuthMe() {
+        return instance.get(`auth/me`).then((response) => response.data);
+    },
+};
