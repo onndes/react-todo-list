@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import s from "./TasksList.module.css";
 import { NavLink } from "react-router-dom";
 import LoaderLine from "../../Common/LoaderLine/LoaderLine";
-import FormAddItem from "./../FormAddItem/FormAddItem";
+import FormAddItem from "../FormAddItem/FormAddItem";
 import Item from "./../Item/Item";
 
 const TasksList = (props) => {

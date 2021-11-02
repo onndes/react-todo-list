@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import TasksList from "./TasksList";
 import { getTasks, addTask, renameTask, deleteTask } from "../../Store/Reducer/TasksReducer";
+import withAuthRedirect from "../../Common/AuthRedirect/withAuthRedirect";
 
 class TasksListContainer extends React.Component {
     componentDidMount() {
@@ -25,4 +26,5 @@ const mapDispatchToProps = (state) => {
 export default compose(
     connect(mapDispatchToProps, { getTasks, addTask, deleteTask, renameTask }),
     withRouter,
+    withAuthRedirect,
 )(TasksListContainer);

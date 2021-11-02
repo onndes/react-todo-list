@@ -1,18 +1,36 @@
+import React from "react";
 import "../../Common/Sanitize.css";
 import "./App.css";
-
-import Header from "../Header/Header";
+import HeaderContainer from "../Header/HeaderContainer";
 import Body from "../Body/Body";
+import { connect } from "react-redux";
+import { getAuth } from "./../../Store/Reducer/AuthReducer";
 
-const App = () => {
+const App = (props) => {
     return (
         <div className='AppWrapper'>
             <div className='AppWrapperContent'>
-                <Header />
+                <HeaderContainer />
                 <Body />
             </div>
         </div>
     );
 };
 
-export default App;
+class AppContainer extends React.Component {
+    componentDidMount() {
+        this.props.getAuth();
+    }
+
+    render() {
+        return <App {...this.porps} />;
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        isAuth: state.auth.isAuth,
+    };
+};
+
+export default connect(mapStateToProps, { getAuth })(AppContainer);

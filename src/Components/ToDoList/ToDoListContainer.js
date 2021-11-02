@@ -10,6 +10,7 @@ import {
     setIdSelectedTodoList,
 } from "../../Store/Reducer/ToDoReducer";
 import { setSelectedToDoTitle } from "../../Store/Reducer/TasksReducer";
+import withAuthRedirect from "../../Common/AuthRedirect/withAuthRedirect";
 class ToDoListContainer extends React.Component {
     componentDidMount() {
         this.props.getTodoLists();
@@ -37,4 +38,5 @@ export default compose(
         setIdSelectedTodoList,
         setSelectedToDoTitle,
     }),
+    withAuthRedirect,
 )(ToDoListContainer);

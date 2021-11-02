@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import s from "./ToDoList.module.css";
 import LoaderLine from "./../../Common/LoaderLine/LoaderLine";
-import FormAddItem from "./../FormAddItem/FormAddItem";
+import FormAddItem from "../FormAddItem/FormAddItem";
 import Item from "../Item/Item";
 
 const TasksList = (props) => {
