@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 0px 20px 0px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.4)
+}
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+}
+.login {
+  font-size: 18px;
+}
