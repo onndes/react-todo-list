@@ -4,7 +4,7 @@ import "./App.css";
 import HeaderContainer from "../Header/HeaderContainer";
 import Body from "../Body/Body";
 import { connect } from "react-redux";
-import { getAuth } from "./../../Store/Reducer/AuthReducer";
+import { getAuthData } from "./../../Store/Reducer/AuthReducer";
 
 const App = (props) => {
     return (
@@ -19,7 +19,7 @@ const App = (props) => {
 
 class AppContainer extends React.Component {
     componentDidMount() {
-        this.props.getAuth();
+        this.props.getAuthData();
     }
 
     render() {
@@ -33,4 +33,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { getAuth })(AppContainer);
+export default connect(mapStateToProps, { getAuthData })(AppContainer);

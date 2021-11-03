@@ -1,15 +1,40 @@
 .wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0px 0px 20px 0px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.4)
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 0px 20px 0px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+    cursor: pointer;
 }
 .logo {
-  font-size: 22px;
-  font-weight: 800;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 10px 0;
+}
+a {
+    color: black;
 }
 .login {
-  font-size: 18px;
+    position: relative;
+    padding: 10px 0;
+}
+.itemLogin {
+    font-size: 18px;
+}
+.dropDownMenu {
+    position: absolute;
+    display: none;
+    top: 90%;
+    left: 0;
+    padding: 5px;
+    width: 100%;
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    background-color: white;
+    font-size: 16px;
+}
+.login:hover .dropDownMenu {
+    display: block;
+}
+.dropDownMenuItem:hover {
+    font-weight: 500;
 }

@@ -1,7 +1,8 @@
 import React from "react";
 import LoginPage from "./LoginPage";
 import { connect } from "react-redux";
-import { getAuth } from "../../Store/Reducer/AuthReducer";
+import { getAuthData, login } from "../../Store/Reducer/AuthReducer";
+import { Redirect } from "react-router-dom";
 
 class LoginPageContainer extends React.Component {
     componentDidMount() {
@@ -9,12 +10,17 @@ class LoginPageContainer extends React.Component {
     }
 
     render() {
-        return <LoginPage {...this.porps} />;
+        if (this.props.isAuth) {
+            return <Redirect to='/todo-list' />;
+        }
+        return <LoginPage {...this.props} />;
     }
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        isAuth: state.auth.isAuth,
+    };
 };
 
-export default connect(mapStateToProps, { getAuth })(LoginPageContainer);
+export default connect(mapStateToProps, { getAuthData, login })(LoginPageContainer);

@@ -1,5 +1,5 @@
 .wrapper {
-    margin: 0px 0px 30px 0px;
+    margin: 0px 0px 20px 0px;
 }
 .pError {
     margin: 5px;
@@ -62,4 +62,5 @@
 
 .button:hover {
     background-color: rgba(128, 128, 128, 0.15);
+
 }
