@@ -4,9 +4,11 @@ import "./App.css";
 import HeaderContainer from "../Header/HeaderContainer";
 import Body from "../Body/Body";
 import { connect } from "react-redux";
-import { getAuthData } from "./../../Store/Reducer/AuthReducer";
+import { initialApp } from "./../../Store/Reducer/AuthReducer";
+import PreloaderApp from "../../Common/PreloaderApp/PreloaderApp";
 
 const App = (props) => {
+    if (!props.ifInitialApp) return <PreloaderApp />;
     return (
         <div className='AppWrapper'>
             <div className='AppWrapperContent'>
@@ -19,18 +21,18 @@ const App = (props) => {
 
 class AppContainer extends React.Component {
     componentDidMount() {
-        this.props.getAuthData();
+        this.props.initialApp();
     }
 
     render() {
-        return <App {...this.porps} />;
+        return <App {...this.props} />;
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth,
+        ifInitialApp: state.auth.ifInitialApp,
     };
 };
 
-export default connect(mapStateToProps, { getAuthData })(AppContainer);
+export default connect(mapStateToProps, { initialApp })(AppContainer);
