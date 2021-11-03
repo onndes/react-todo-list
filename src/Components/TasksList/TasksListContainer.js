@@ -21,6 +21,8 @@ const mapDispatchToProps = (state) => {
         selectedTodoTitle: state.tasks.selectedTodoTitle,
         isLoading: state.tasks.isLoading,
         maxTasks: state.tasks.maxTasks,
+        loadingId: state.tasks.loadingId,
+        isLoadingUpdate: state.tasks.isLoadingUpdate,
     };
 };
 export default compose(

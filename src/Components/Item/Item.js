@@ -3,6 +3,7 @@ import s from "./Item.module.css";
 import { NavLink } from "react-router-dom";
 import FormRenameItem from "./FormRenameItem/FormRenameItem";
 import FormDeleteItem from "./FormDeleteItem/FormDeleteItem";
+import LoaderLine from "./../../Common/LoaderLine/LoaderLine";
 
 const Item = (props) => {
     if (props.itemLists.length === 0) {
@@ -13,6 +14,13 @@ const Item = (props) => {
         <div className={s.wrapper}>
             <ul className={s.list}>
                 {props.itemLists.map((i) => {
+                    if (props.isLoadingUpdate && props.loadingId === i.id) {
+                        return (
+                            <li key={i.id} className={s.item + " " + s.itemLoader}>
+                                <LoaderLine height='35px' />
+                            </li>
+                        );
+                    }
                     if (props.renameItem === i.id) {
                         return (
                             <FormRenameItem

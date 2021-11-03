@@ -6,12 +6,16 @@ const DELETE_TODO_LIST = "ToDoReducer/DELETE_TODO_LIST";
 const RENAME_TODO_LIST = "ToDoReducer/RENAME_TODO_LIST";
 const SET_ID_SELECTED_TODO = "ToDoReducer/SET_ID_SELECTED_TODO";
 const SET_LOADING = "ToDoReducer/SET_LOADING";
+const SET_LOADING_UPDATE = "ToDoReducer/SET_LOADING_UPDATE";
 const REORDER_TODO = "ToDoReducer/REORDER_TODO";
 
 const initialState = {
     todoLists: null,
     idSelectedTodoList: null,
     maxTodo: 10,
+    isLoading: false,
+    isLoadingUpdate: false,
+    loadingId: null,
 };
 
 const ToDoReducer = (state = initialState, action) => {
@@ -54,6 +58,12 @@ const ToDoReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: action.isLoading,
             };
+        case SET_LOADING_UPDATE:
+            return {
+                ...state,
+                isLoadingUpdate: action.isLoadingUpdate,
+                loadingId: action.loadingId,
+            };
         case REORDER_TODO:
             return {
                 ...state,
@@ -76,8 +86,11 @@ const renameToDoList = (todoId, newTitle) => {
     return { type: RENAME_TODO_LIST, todoId, newTitle };
 };
 
-const setLoading = (isLoading) => {
-    return { type: SET_LOADING, isLoading };
+const setLoading = (isLoadingUpdate) => {
+    return { type: SET_LOADING, isLoadingUpdate };
+};
+const setLoadingUpdate = (isLoadingUpdate, loadingId = null) => {
+    return { type: SET_LOADING_UPDATE, isLoadingUpdate, loadingId };
 };
 
 export const setIdSelectedTodoList = (todoId) => {
@@ -104,16 +117,20 @@ export const createTodoList = (title) => {
 };
 
 export const deleteTodoList = (todoId) => async (dispatch) => {
+    dispatch(setLoadingUpdate(true, todoId));
     const resault = await todoAPI.deleteTotoList(todoId);
     if (resault.data.resultCode === 0) {
         dispatch(deleteToDoList(todoId));
     }
+    dispatch(setLoadingUpdate(false));
 };
 export const renameTodoList = (todoId, title) => async (dispatch) => {
+    dispatch(setLoadingUpdate(true, todoId));
     const resault = await todoAPI.renameTotoList(todoId, title);
     if (resault.data.resultCode === 0) {
         dispatch(renameToDoList(todoId, title));
     }
+    dispatch(setLoadingUpdate(false));
 };
 export const reorderTodoList = (todoId, afterTodo) => async (dispatch) => {
     const resault = await todoAPI.reorderTodoList(todoId, afterTodo);

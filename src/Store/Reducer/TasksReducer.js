@@ -7,6 +7,7 @@ const SET_SELECTED_TODO_TITLE = "TasksReducer/SET_SELECTED_TODO_TITLE";
 const SET_ADD_TASK = "TasksReducer/SET_ADD_TASK";
 const DELETE_TASKS_LIST = "TasksReducer/DELETE_TASKS_LIST";
 const RENAME_TASKS_LIST = "TasksReducer/RENAME_TASKS_LIST";
+const SET_LOADING_UPDATE = "ToDoReducer/SET_LOADING_UPDATE";
 const SET_LOADING = "TasksReducer/SET_LOADING";
 
 const initialState = {
@@ -15,6 +16,8 @@ const initialState = {
     selectedTodoTitle: null,
     isLoading: false,
     maxTasks: 100,
+    isLoadingUpdate: false,
+    loadingId: null,
 };
 
 const TasksReducer = (state = initialState, action) => {
@@ -57,6 +60,12 @@ const TasksReducer = (state = initialState, action) => {
                     return item;
                 }),
             };
+        case SET_LOADING_UPDATE:
+            return {
+                ...state,
+                isLoadingUpdate: action.isLoadingUpdate,
+                loadingId: action.loadingId,
+            };
         case SET_LOADING:
             return {
                 ...state,
@@ -88,7 +97,9 @@ const renameTaskAC = (taskId, newTitle) => {
 const setLoading = (isLoading) => {
     return { type: SET_LOADING, isLoading };
 };
-
+const setLoadingUpdate = (isLoadingUpdate, loadingId = null) => {
+    return { type: SET_LOADING_UPDATE, isLoadingUpdate, loadingId };
+};
 export const getTasks = (order) => async (dispatch) => {
     dispatch(setLoading(true));
     const todoLists = await todoAPI.getTodoLists();
@@ -107,16 +118,20 @@ export const addTask = (taskText) => async (dispatch, getState) => {
     }
 };
 export const deleteTask = (taskId) => async (dispatch, getState) => {
+    dispatch(setLoadingUpdate(true, taskId));
     const resault = await taksksAPI.deleteTaskList(getState().tasks.selectedTodoID, taskId);
     if (resault.data.resultCode === 0) {
         dispatch(deleteTaskAC(taskId));
     }
+    dispatch(setLoadingUpdate(false));
 };
 export const renameTask = (taskId, title) => async (dispatch, getState) => {
+    dispatch(setLoadingUpdate(true, taskId));
     const resault = await taksksAPI.renameTaskList(getState().tasks.selectedTodoID, taskId, title);
     if (resault.data.resultCode === 0) {
         dispatch(renameTaskAC(taskId, title));
     }
+    dispatch(setLoadingUpdate(false));
 };
 
 export default TasksReducer;

@@ -26,6 +26,8 @@ const mapStateToProps = (state) => {
         todoLists: state.todo.todoLists,
         isLoading: state.todo.isLoading,
         maxTodo: state.todo.maxTodo,
+        loadingId: state.todo.loadingId,
+        isLoadingUpdate: state.todo.isLoadingUpdate,
     };
 };
 

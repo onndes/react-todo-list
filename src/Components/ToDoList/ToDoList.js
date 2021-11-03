@@ -66,6 +66,8 @@ const TasksList = (props) => {
                     renameItem={renameItem}
                     setDeleteItem={setDeleteItem}
                     deleteItem={deleteItem}
+                    loadingId={props.loadingId}
+                    isLoadingUpdate={props.isLoadingUpdate}
                 />
             )}
         </div>
