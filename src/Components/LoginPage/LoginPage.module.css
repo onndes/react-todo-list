@@ -33,3 +33,7 @@
 .btn:hover {
   background-color: rgba(128, 128, 128, 0.4);
 }
+.messagesError {
+  color: red;
+  padding: 0px 0px 10px 0px;
+}

@@ -4,6 +4,7 @@ import { getTodoLists } from "./ToDoReducer";
 const SET_USER_DATA = "AuthReducer/SET_USER_DATA";
 const RESET_USER_DATA = "AuthReducer/RESET_USER_DATA";
 const SET_INITIAL_APP = "AuthReducer/SET_INITIAL_APP";
+const SET_ERROR_LOGIN = "AuthReducer/SET_ERROR_LOGIN";
 
 const initialState = {
     id: null,
@@ -11,6 +12,9 @@ const initialState = {
     email: null,
     isAuth: false,
     ifInitialApp: false,
+    errorLogin: {
+        messages: null,
+    },
 };
 
 const AuthReducer = (state = initialState, action) => {
@@ -34,6 +38,14 @@ const AuthReducer = (state = initialState, action) => {
                 ...state,
                 ifInitialApp: action.initialApp,
             };
+        case SET_ERROR_LOGIN:
+            return {
+                ...state,
+                errorLogin: {
+                    ...state.errorLogin,
+                    messages: action.messagesError,
+                },
+            };
         default:
             return state;
     }
@@ -49,6 +61,9 @@ const resetUserData = () => {
 const setInitialApp = (initialApp) => {
     return { type: SET_INITIAL_APP, initialApp };
 };
+const setMessagesError = (messagesError) => {
+    return { type: SET_ERROR_LOGIN, messagesError };
+};
 export const getAuthData = () => async (dispatch) => {
     const resault = await authAPI.getAuthMe();
     if (resault.resultCode === 0) {
@@ -60,6 +75,9 @@ export const login = (data) => async (dispatch) => {
     const res = await authAPI.login(data);
     if (res.resultCode === 0) {
         dispatch(getAuthData());
+        dispatch(setMessagesError(null));
+    } else if (res.resultCode === 1) {
+        dispatch(setMessagesError(res.messages[0]));
     }
 };
 

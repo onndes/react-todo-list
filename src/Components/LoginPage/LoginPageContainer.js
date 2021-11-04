@@ -20,6 +20,7 @@ class LoginPageContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
+        errorLogin: state.auth.errorLogin,
     };
 };
 

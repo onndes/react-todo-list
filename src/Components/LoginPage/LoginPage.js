@@ -9,7 +9,7 @@ const LoginPage = (props) => {
     };
     return (
         <div className={s.wrapper}>
-            <LoginPageForm handleSubmit={handleSubmit} />
+            <LoginPageForm handleSubmit={handleSubmit} messagesError={props.errorLogin.messages} />
         </div>
     );
 };
@@ -23,6 +23,7 @@ const LoginPageForm = (props) => {
         }
     };
 
+    const isFailidLogin = props.messagesError;
     return (
         <Form
             onSubmit={props.handleSubmit}
@@ -34,6 +35,9 @@ const LoginPageForm = (props) => {
                                 props.handleSubmit(e);
                             }}
                             className={s.form}>
+                            {isFailidLogin && (
+                                <div className={s.messagesError}>{isFailidLogin}</div>
+                            )}
                             <div className={s.wrapperBlock}>
                                 <label className={s.label}>Login</label>
                                 <Field
