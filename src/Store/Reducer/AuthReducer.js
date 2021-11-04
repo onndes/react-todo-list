@@ -70,9 +70,12 @@ export const logout = () => async (dispatch) => {
     }
 };
 
-export const initialApp = () => async (dispatch) => {
+export const initialApp = () => async (dispatch, getState) => {
     const authMePromise = await dispatch(getAuthData());
-    const todoListPromise = dispatch(getTodoLists());
+    let todoListPromise = null;
+    if (getState().auth.isAuth) {
+        todoListPromise = dispatch(getTodoLists());
+    }
 
     Promise.all([authMePromise, todoListPromise]).then(() => {
         dispatch(setInitialApp(true));
