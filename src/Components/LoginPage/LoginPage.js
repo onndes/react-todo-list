@@ -1,6 +1,7 @@
 import React from "react";
 import { Field, Form } from "react-final-form";
 import s from "./LoginPage.module.css";
+import cn from "classnames";
 
 const LoginPage = (props) => {
     const handleSubmit = (data) => {
@@ -14,6 +15,14 @@ const LoginPage = (props) => {
 };
 
 const LoginPageForm = (props) => {
+    const requiredFill = (value) => {
+        if (value) {
+            return undefined;
+        } else {
+            return "Required to fill";
+        }
+    };
+
     return (
         <Form
             onSubmit={props.handleSubmit}
@@ -29,17 +38,49 @@ const LoginPageForm = (props) => {
                                 <label className={s.label}>Login</label>
                                 <Field
                                     name='email'
-                                    type='text'
-                                    className={s.input}
-                                    component='input'></Field>
+                                    validate={requiredFill}
+                                    render={({ input, meta }) => {
+                                        return (
+                                            <>
+                                                <input
+                                                    type='text'
+                                                    {...input}
+                                                    className={cn(s.input, {
+                                                        [s.inputErrorRequired]:
+                                                            meta.error && meta.touched,
+                                                    })}
+                                                />
+                                                {meta.error && meta.touched && (
+                                                    <p className={s.textError}>{meta.error}</p>
+                                                )}
+                                            </>
+                                        );
+                                    }}
+                                />
                             </div>
                             <div className={s.wrapperBlock}>
                                 <label className={s.label}>Password</label>
                                 <Field
+                                    validate={requiredFill}
                                     name='password'
-                                    type='password'
-                                    className={s.input}
-                                    component='input'></Field>
+                                    render={({ input, meta }) => {
+                                        return (
+                                            <>
+                                                <input
+                                                    type='password'
+                                                    {...input}
+                                                    className={cn(s.input, {
+                                                        [s.inputErrorRequired]:
+                                                            meta.error && meta.touched,
+                                                    })}
+                                                />
+                                                {meta.error && meta.touched && (
+                                                    <p className={s.textError}>{meta.error}</p>
+                                                )}
+                                            </>
+                                        );
+                                    }}
+                                />
                             </div>
                             <div className={s.wrapperBlock + " " + s.wrapperBlockCheckBox}>
                                 <label className={s.label}>Remember me</label>
@@ -47,7 +88,8 @@ const LoginPageForm = (props) => {
                                     name='rememberMe'
                                     type='checkbox'
                                     className={s.input}
-                                    component='input'></Field>
+                                    component='input'
+                                />
                             </div>
                             <button className={s.btn} type='submit'>
                                 Login

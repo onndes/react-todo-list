@@ -12,6 +12,14 @@
   padding: 4px;
   border: 1px solid rgba(128, 128, 128, 0.4)
 }
+.inputErrorRequired {
+  border: 1px solid rgba(255, 0, 0, 0.6)
+}
+.textError {
+  display: flex;
+  justify-content: flex-end;
+  color: red;
+}
 .wrapperBlockCheckBox {
   flex-direction: row;
   align-items: center;
